@@ -26,3 +26,12 @@ log = "0.4"
 object_store = "0.8.0"
 snafu = "0.7.4"
 url = "2"
+
+[patch.crates-io]
+lance = { git = "https://github.com/urbanlogiq/lance", branch = "0.9.5-ul"}
+lance-arrow = { git = "https://github.com/urbanlogiq/lance", branch = "0.9.5-ul"}
+lance-core = { git = "https://github.com/urbanlogiq/lance", branch = "0.9.5-ul"}
+lance-datafusion = { git = "https://github.com/urbanlogiq/lance", branch = "0.9.5-ul"}
+lance-index = { git = "https://github.com/urbanlogiq/lance", branch = "0.9.5-ul"}
+lance-linalg = { git = "https://github.com/urbanlogiq/lance", branch = "0.9.5-ul"}
+

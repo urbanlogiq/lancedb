@@ -26,7 +26,7 @@ use lance::dataset::optimize::{
 };
 use lance::dataset::{Dataset, UpdateBuilder, WriteParams};
 use lance::index::DatasetIndexExt;
-use lance::io::object_store::WrappingObjectStore;
+use lance::io::object_store::{ObjectStoreRegistry, WrappingObjectStore};
 use std::path::Path;
 
 use crate::error::{Error, Result};
@@ -406,9 +406,11 @@ impl Table {
         &mut self,
         options: CompactionOptions,
         remap_options: Option<Arc<dyn IndexRemapperOptions>>,
+        object_store_registry: Option<Arc<ObjectStoreRegistry>>,
     ) -> Result<CompactionMetrics> {
         let mut dataset = self.dataset.as_ref().clone();
-        let metrics = compact_files(&mut dataset, options, remap_options).await?;
+        let metrics =
+            compact_files(&mut dataset, options, remap_options, object_store_registry).await?;
         self.dataset = Arc::new(dataset);
         Ok(metrics)
     }

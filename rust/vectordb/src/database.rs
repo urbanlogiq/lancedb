@@ -21,6 +21,7 @@ use lance::dataset::WriteParams;
 use lance::io::object_store::{ObjectStore, WrappingObjectStore};
 use object_store::local::LocalFileSystem;
 use snafu::prelude::*;
+use url::Url;
 
 use crate::error::{CreateDirSnafu, Error, InvalidTableNameSnafu, Result};
 use crate::io::object_store::MirroringObjectStoreWrapper;
@@ -45,6 +46,28 @@ const MIRRORED_STORE: &str = "mirroredStore";
 
 /// A connection to LanceDB
 impl Database {
+    /// Connects to LanceDB
+    ///
+    /// # Arguments
+    ///
+    /// * `base_uri` - The URI base for this database.
+    /// * `object_store` - A pre-configured Lance object store.
+    ///
+    /// # Returns
+    ///
+    /// * A [Database] object.
+    pub async fn from_object_store(base_uri: &Url, object_store: ObjectStore) -> Result<Database> {
+        let base_path = base_uri.path().into();
+
+        Ok(Self {
+            uri: base_uri.to_string(),
+            query_string: None,
+            base_path,
+            object_store,
+            store_wrapper: None,
+        })
+    }
+
     /// Connects to LanceDB
     ///
     /// # Arguments
