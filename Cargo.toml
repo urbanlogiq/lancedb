@@ -25,6 +25,7 @@ lance-index = { "version" = "=0.12.1" }
 lance-linalg = { "version" = "=0.12.1" }
 lance-testing = { "version" = "=0.12.1" }
 lance-datafusion = { "version" = "=0.12.1" }
+lance-io = { "version" = "=0.12.1" }
 # Note that this one does not include pyarrow
 arrow = { version = "51.0", optional = false }
 arrow-array = "51.0"
@@ -49,3 +50,12 @@ url = "2"
 num-traits = "0.2"
 regex = "1.10"
 lazy_static = "1"
+
+[patch.crates-io]
+lance = { git = "https://github.com/urbanlogiq/lance", branch = "v0.12.1-ul"}
+lance-arrow = { git = "https://github.com/urbanlogiq/lance", branch = "v0.12.1-ul"}
+lance-core = { git = "https://github.com/urbanlogiq/lance", branch = "v0.12.1-ul"}
+lance-datafusion = { git = "https://github.com/urbanlogiq/lance", branch = "v0.12.1-ul"}
+lance-index = { git = "https://github.com/urbanlogiq/lance", branch = "v0.12.1-ul"}
+lance-linalg = { git = "https://github.com/urbanlogiq/lance", branch = "v0.12.1-ul"}
+lance-io = { git = "https://github.com/urbanlogiq/lance", branch = "v0.12.1-ul"}
